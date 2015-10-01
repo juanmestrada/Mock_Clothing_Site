@@ -1,0 +1,504 @@
+@import "../bower_components/normalize-css/normalize.css";
+@import "../bower_components/typeplate-starter-kit/css/typeplate.css";
+
+/**
+ * BOX-SIZING
+ */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    transition-delay: 0s;
+    transition-duration: 0.25s;
+    transition-property: opacity, transform, color, background-color, border-color, z-index, background-image;
+    transition-timing-function: ease;
+}
+
+/**
+ * GRIDS
+ */
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    > * {
+        flex: 1;
+        flex-basis: 100%;
+    }
+}
+
+@define-mixin grid_r $col, $width {
+    @media only screen and (min-width: $(width)px) {
+        .grid-$(col)-$(width) {
+            & > * {
+                flex-basis: calc(100 / $col)%;
+            }
+            @mixin-content;
+        }
+    }
+}
+
+@define-mixin grid $col {
+    .grid-$(col) {
+        & > * {
+            flex-basis: calc(100 / $col)%;
+        }
+        @mixin-content;
+    }
+}
+
+@mixin grid 2 {}
+@mixin grid 4 {}
+@mixin grid 6 {}
+
+@mixin grid_r 2, 400 {}
+@mixin grid_r 2, 800 {}
+
+@mixin grid_r 4, 400 {}
+@mixin grid_r 4, 800 {}
+
+.apparel-grid{
+    div{
+        padding: 20px;
+        overflow: hidden;
+        cursor: pointer;
+     }   
+    & > *{
+        position: relative;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease-in-out;
+        img{
+            transform:scale(1);
+            transition: all 0.3s ease-in-out;
+            max-width:100%;
+            
+
+        }
+        &:hover{
+            img{
+                transform: scale(1.2);
+                transition: all 0.3s ease-in-out;
+            }
+        p{
+            left:8%;
+        }
+    }
+    }
+    .is-showing{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    
+    p{
+        width: 100px;
+        position: absolute;
+        bottom: 20px;
+        left: -100px;
+        background-color: black;
+        color: white;
+        font-size: 12px;
+        padding: 2px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+/**
+ * GENERAL
+ */
+
+img {
+    max-width: 100%;
+}
+/**
+ * YOUR CODE HERE
+ */
+header{
+    
+    position: relative;
+    height: 600px;
+    background-image: url(../images/newyork.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: auto 700px;
+    background-attachment: fixed;
+    overflow: hidden;
+    
+}
+
+.title{
+    position: absolute;
+    top:200px;
+    left: 25%;
+    width: 60%;
+    height: 500px;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.model{
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    height:670px;
+    background-image: url(../images/woman.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+}
+
+.about{
+    padding: 100px;
+    text-align: center;
+    background-color: white;
+    
+    margin-bottom: 300px;
+    .navbar{
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin-bottom: 150px;
+
+        span{
+            display: inline-block;
+            min-width:15%;
+            white-space: nowrap;
+            line-height: 3em;
+            cursor: pointer;
+            h4{
+                margin-bottom: 0;
+            }
+            a{
+            color: black;
+            text-decoration: none;
+            }
+        }
+    }
+
+    .details-navbar{
+
+    }
+}
+.apparel{
+    background-color: white;
+   
+}
+
+footer{
+    
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+    background-color: black;
+    color: white;
+    z-index: -1;
+    font-size: 1em;
+    li{
+        list-style: none;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+    h4{
+        color: white;
+    }
+
+    .links{
+        float: left;
+        width: 20%;
+        margin-left: 10%;
+        padding: 5px;
+        p{
+            margin: 0;
+            color: white;
+            text-align: left;
+        }
+        img{
+            display: none;
+        }
+
+    }
+    .stuff{
+        float: left;
+        width: 20%;
+        padding: 5px;
+
+    }
+    .newsletter{
+        float: left;
+        width: 40%;
+        height: auto;
+        padding: 5px;
+        input[type=text]{
+            color: black;
+            border-radius: 10px;
+        }
+        input[type=button]{
+            color:black;
+            background-color: red;
+            border-radius: 10px;
+        }
+
+    }
+    p{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-top: 50px;
+        color: gray;
+    }
+}
+.footer-container{
+    padding-top: 40px;
+    overflow: auto;
+}
+
+.categories{
+    float: left;
+    width: 20%;
+    height: auto;
+    background-color: rgb(237, 237, 237);
+    border: 1px solid black;
+    border-radius: 10px;
+    ul{
+        width: 100%;
+       padding: 15px; 
+       text-align: left;
+       font-size: 16px;
+        li{
+            list-style: none;
+            
+            p{
+
+            }
+        }
+    }
+}
+
+.details-grid{
+    width: 70%;
+    display: inline-block;
+}
+
+.details-about{
+    margin: 20px;
+    text-align: center;
+    background-color: white;
+    
+    margin-bottom: 200px;
+    .navbar{
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin-bottom: 100px;
+        span{
+            display: inline-block;
+            min-width:15%;
+            white-space: nowrap;
+            line-height: 3em;
+            cursor: pointer;
+
+            h4{
+                margin-bottom: 0;
+            }
+            a{
+            color: black;
+            text-decoration: none;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 900px){
+    /*
+    header{
+        background-image: url(../images/mobilebkgrnd.png);
+        background-repeat: no-repeat;
+        background-size: 100% 80%;
+    }*/
+    .about{
+        padding: 50px;
+    }
+    footer{
+        position: relative;
+        .links{
+            width: 25%;
+            margin:0;
+        }
+        .stuff{
+            width: 25%;
+        }
+        .newsletter{
+            width: 50%;
+            
+        }
+    
+    }
+
+
+    .categories{
+        display: none;
+    }
+
+    .apparel{
+        width: 95%;
+    }
+
+    .navbar{
+        span{
+           width: 33%;
+        }
+         .home-logo{
+            display: inline-block;
+            width: 50%;
+            text-align: left;
+        }
+        .shop{
+            h4{
+                display: none;
+            }
+        }
+    }
+    
+}
+
+
+@media screen and (max-width: 500px) {
+
+
+
+
+    .navbar{
+        margin: 0;
+        margin-bottom: 50px;
+        span{
+            width: 25%;
+            font-size: 14px;
+            h4{
+                font-size: 22px;
+            }
+
+
+        }
+        .home-logo{
+            display: inline-block;
+            width: 50%;
+        }
+        .shop{
+            display: inline-block;
+            width: 50%;
+        }
+    }
+
+
+    .about{
+        padding: 20px;
+    }
+
+    footer{
+
+        height: 200px;
+        .links{
+
+            display: block;
+            position: absolute;
+            top: -80px;
+            width: 100%;
+
+            h4{
+                display: none;
+                
+            }
+
+            p{
+                    display: none;
+                }
+
+                li{
+                    display: inline-block;
+                    width: 30%;
+                    img{
+                    display: block;
+                    width: 25px;
+                    padding: 2px;
+                    }
+                }
+            
+        }
+
+        .stuff{
+            width: 100%;
+            color: black;
+            position: absolute;
+            bottom: -50px;
+            h4{
+                display: none;
+            }
+            ul{
+
+                li{
+                    display: inline-block;
+                    float: left;
+                    width: 33%;
+                }
+                
+            }
+        }
+
+        .newsletter{
+            display: block;
+            width: 100%;
+            input[type=text]{
+                display: inline-block;
+               
+                
+            }
+
+            input[type=button]{
+                    display: inline-block;
+                }
+        }
+
+    }
+
+    .copyright{
+        p{
+            display: none;
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
